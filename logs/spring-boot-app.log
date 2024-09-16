@@ -1,0 +1,194 @@
+2024-09-16T08:36:59.361+03:00  INFO 17432 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : Starting LaboratoryApplication using Java 22.0.2 with PID 17432 (C:\Users\Bashar Kalla\Documents\LabProject\Laboratory\target\classes started by Bashar Kalla in C:\Users\Bashar Kalla\Documents\LabProject)
+2024-09-16T08:36:59.387+03:00  INFO 17432 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T08:36:59.538+03:00  INFO 17432 --- [Laboratory] [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\Bashar Kalla\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.5.0.24.07\ojdbc11-23.5.0.24.07.jar referenced one or more files that do not exist: file:/C:/Users/Bashar%20Kalla/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.5.0.24.07/oraclepki.jar
+2024-09-16T08:36:59.539+03:00  INFO 17432 --- [Laboratory] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-16T08:36:59.539+03:00  INFO 17432 --- [Laboratory] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-16T08:37:01.601+03:00  INFO 17432 --- [Laboratory] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-16T08:37:01.718+03:00  INFO 17432 --- [Laboratory] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 104 ms. Found 7 JPA repository interfaces.
+2024-09-16T08:37:02.658+03:00  INFO 17432 --- [Laboratory] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-16T08:37:02.678+03:00  INFO 17432 --- [Laboratory] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T08:37:02.679+03:00  INFO 17432 --- [Laboratory] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-16T08:37:02.755+03:00  INFO 17432 --- [Laboratory] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T08:37:02.755+03:00  INFO 17432 --- [Laboratory] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3215 ms
+2024-09-16T08:37:03.093+03:00  INFO 17432 --- [Laboratory] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-16T08:37:03.226+03:00  INFO 17432 --- [Laboratory] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-16T08:37:03.285+03:00  INFO 17432 --- [Laboratory] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-16T08:37:03.791+03:00  INFO 17432 --- [Laboratory] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-16T08:37:03.835+03:00  INFO 17432 --- [Laboratory] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-16T08:37:04.506+03:00  INFO 17432 --- [Laboratory] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@37b9ac4d
+2024-09-16T08:37:04.509+03:00  INFO 17432 --- [Laboratory] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-16T08:37:04.801+03:00  WARN 17432 --- [Laboratory] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-16T08:37:10.714+03:00  INFO 17432 --- [Laboratory] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-16T08:37:17.358+03:00  INFO 17432 --- [Laboratory] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-16T08:37:18.114+03:00  WARN 17432 --- [Laboratory] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-16T08:37:18.148+03:00  WARN 17432 --- [Laboratory] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: d75a2101-2c0a-4200-8a1b-0ab409ea5fda
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-09-16T08:37:18.172+03:00  INFO 17432 --- [Laboratory] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-09-16T08:37:19.220+03:00  INFO 17432 --- [Laboratory] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T08:37:19.301+03:00  INFO 17432 --- [Laboratory] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-09-16T08:37:19.321+03:00  INFO 17432 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : Started LaboratoryApplication in 20.898 seconds (process running for 26.356)
+2024-09-16T08:37:45.761+03:00  INFO 17432 --- [Laboratory] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T08:37:45.762+03:00  INFO 17432 --- [Laboratory] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T08:37:45.765+03:00  INFO 17432 --- [Laboratory] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2024-09-16T08:37:46.031+03:00  WARN 17432 --- [Laboratory] [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/test_category/all.]
+2024-09-16T08:37:46.164+03:00  WARN 17432 --- [Laboratory] [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2024-09-16T09:00:28.748+03:00  INFO 17432 --- [Laboratory] [http-nio-8080-exec-4] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in the request target [/api/test_categories/search?name=blood\ ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:482) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:257) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2024-09-16T09:00:58.190+03:00  INFO 17432 --- [Laboratory] [http-nio-8080-exec-8] c.e.l.Service.TestCategoryService        : blood/
+2024-09-16T09:00:58.191+03:00  INFO 17432 --- [Laboratory] [http-nio-8080-exec-8] c.e.l.Service.TestCategoryService        : Received request to search category by name: blood
+2024-09-16T09:00:58.191+03:00  INFO 17432 --- [Laboratory] [http-nio-8080-exec-8] c.e.l.Service.TestCategoryService        : Searching for category by name: blood
+2024-09-16T09:00:58.426+03:00  INFO 17432 --- [Laboratory] [http-nio-8080-exec-8] c.e.l.Service.TestCategoryService        : Found 1 categories with name: blood
+2024-09-16T09:01:06.201+03:00  INFO 17432 --- [Laboratory] [http-nio-8080-exec-9] o.apache.coyote.http11.Http11Processor   : Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+
+java.lang.IllegalArgumentException: Invalid character found in the request target [/api/test_categories/search?name=blood\ ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:482) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:257) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:904) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.28.jar:10.1.28]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2024-09-16T09:05:12.541+03:00  INFO 17432 --- [Laboratory] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-16T09:05:12.548+03:00  INFO 17432 --- [Laboratory] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-16T09:05:12.573+03:00  INFO 17432 --- [Laboratory] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-16T09:08:22.106+03:00  INFO 14028 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : Starting LaboratoryApplication using Java 22.0.2 with PID 14028 (C:\Users\Bashar Kalla\Documents\LabProject\Laboratory\target\classes started by Bashar Kalla in C:\Users\Bashar Kalla\Documents\LabProject)
+2024-09-16T09:08:22.109+03:00  INFO 14028 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T09:08:22.198+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.b.devtools.restart.ChangeableUrls    : The Class-Path manifest attribute in C:\Users\Bashar Kalla\.m2\repository\com\oracle\database\jdbc\ojdbc11\23.5.0.24.07\ojdbc11-23.5.0.24.07.jar referenced one or more files that do not exist: file:/C:/Users/Bashar%20Kalla/.m2/repository/com/oracle/database/jdbc/ojdbc11/23.5.0.24.07/oraclepki.jar
+2024-09-16T09:08:22.198+03:00  INFO 14028 --- [Laboratory] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-16T09:08:22.199+03:00  INFO 14028 --- [Laboratory] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-16T09:08:23.673+03:00  INFO 14028 --- [Laboratory] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-16T09:08:23.816+03:00  INFO 14028 --- [Laboratory] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 129 ms. Found 7 JPA repository interfaces.
+2024-09-16T09:08:25.112+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-16T09:08:25.137+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T09:08:25.138+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-16T09:08:25.232+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T09:08:25.232+03:00  INFO 14028 --- [Laboratory] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3033 ms
+2024-09-16T09:08:25.668+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-16T09:08:25.789+03:00  INFO 14028 --- [Laboratory] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-09-16T09:08:25.866+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-16T09:08:26.414+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-16T09:08:26.457+03:00  INFO 14028 --- [Laboratory] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-09-16T09:08:26.993+03:00  INFO 14028 --- [Laboratory] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@105f6a20
+2024-09-16T09:08:26.995+03:00  INFO 14028 --- [Laboratory] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-09-16T09:08:27.252+03:00  WARN 14028 --- [Laboratory] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-16T09:08:30.076+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-16T09:08:31.634+03:00  INFO 14028 --- [Laboratory] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-16T09:08:32.359+03:00  WARN 14028 --- [Laboratory] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-16T09:08:32.392+03:00  WARN 14028 --- [Laboratory] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: e65ffd31-50a3-4d3d-a022-19857c1b5364
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-09-16T09:08:32.415+03:00  INFO 14028 --- [Laboratory] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-09-16T09:08:33.347+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T09:08:33.396+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-09-16T09:08:33.407+03:00  INFO 14028 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : Started LaboratoryApplication in 12.037 seconds (process running for 13.369)
+2024-09-16T09:08:51.007+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T09:08:51.007+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T09:08:51.010+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-09-16T09:08:51.166+03:00  WARN 14028 --- [Laboratory] [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2024-09-16T09:08:56.733+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-4] c.e.l.Service.TestCategoryService        : Received request to retrieve all categories
+2024-09-16T09:08:56.734+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-4] c.e.l.Service.TestCategoryService        : Retrieving all Categories
+2024-09-16T09:15:59.381+03:00  INFO 14028 --- [Laboratory] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 1 deletion, 0 modifications)
+2024-09-16T09:15:59.402+03:00  INFO 14028 --- [Laboratory] [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-16T09:15:59.408+03:00  INFO 14028 --- [Laboratory] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-09-16T09:15:59.430+03:00  INFO 14028 --- [Laboratory] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-09-16T09:15:59.583+03:00  INFO 14028 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : Starting LaboratoryApplication using Java 22.0.2 with PID 14028 (C:\Users\Bashar Kalla\Documents\LabProject\Laboratory\target\classes started by Bashar Kalla in C:\Users\Bashar Kalla\Documents\LabProject)
+2024-09-16T09:15:59.584+03:00  INFO 14028 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T09:16:00.123+03:00  INFO 14028 --- [Laboratory] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-16T09:16:00.163+03:00  INFO 14028 --- [Laboratory] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 7 JPA repository interfaces.
+2024-09-16T09:16:00.525+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-16T09:16:00.528+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T09:16:00.528+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-16T09:16:00.561+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T09:16:00.562+03:00  INFO 14028 --- [Laboratory] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 973 ms
+2024-09-16T09:16:00.668+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-16T09:16:00.672+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-16T09:16:00.691+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-16T09:16:00.694+03:00  INFO 14028 --- [Laboratory] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2024-09-16T09:16:00.797+03:00  INFO 14028 --- [Laboratory] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection oracle.jdbc.driver.T4CConnection@306f1922
+2024-09-16T09:16:00.798+03:00  INFO 14028 --- [Laboratory] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2024-09-16T09:16:00.803+03:00  WARN 14028 --- [Laboratory] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-16T09:16:01.528+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-16T09:16:03.413+03:00  INFO 14028 --- [Laboratory] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-16T09:16:03.801+03:00  WARN 14028 --- [Laboratory] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-16T09:16:03.833+03:00  WARN 14028 --- [Laboratory] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: a0dc6027-afaf-407d-8d74-b5a062c441a2
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-09-16T09:16:03.836+03:00  INFO 14028 --- [Laboratory] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-09-16T09:16:04.448+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T09:16:04.477+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-09-16T09:16:04.483+03:00  INFO 14028 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : Started LaboratoryApplication in 4.957 seconds (process running for 464.445)
+2024-09-16T09:16:04.486+03:00  INFO 14028 --- [Laboratory] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-16T09:16:05.926+03:00  INFO 14028 --- [Laboratory] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2024-09-16T09:16:05.952+03:00  INFO 14028 --- [Laboratory] [Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-16T09:16:05.953+03:00  INFO 14028 --- [Laboratory] [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2024-09-16T09:16:05.983+03:00  INFO 14028 --- [Laboratory] [Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2024-09-16T09:16:06.093+03:00  INFO 14028 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : Starting LaboratoryApplication using Java 22.0.2 with PID 14028 (C:\Users\Bashar Kalla\Documents\LabProject\Laboratory\target\classes started by Bashar Kalla in C:\Users\Bashar Kalla\Documents\LabProject)
+2024-09-16T09:16:06.094+03:00  INFO 14028 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : No active profile set, falling back to 1 default profile: "default"
+2024-09-16T09:16:06.400+03:00  INFO 14028 --- [Laboratory] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-16T09:16:06.430+03:00  INFO 14028 --- [Laboratory] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 7 JPA repository interfaces.
+2024-09-16T09:16:06.604+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-09-16T09:16:06.605+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-09-16T09:16:06.605+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-09-16T09:16:06.635+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-09-16T09:16:06.635+03:00  INFO 14028 --- [Laboratory] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 539 ms
+2024-09-16T09:16:06.723+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-16T09:16:06.726+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-09-16T09:16:06.737+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-16T09:16:06.738+03:00  INFO 14028 --- [Laboratory] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2024-09-16T09:16:06.803+03:00  INFO 14028 --- [Laboratory] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection oracle.jdbc.driver.T4CConnection@2bc9a73c
+2024-09-16T09:16:06.804+03:00  INFO 14028 --- [Laboratory] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2024-09-16T09:16:06.807+03:00  WARN 14028 --- [Laboratory] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: OracleDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-16T09:16:07.356+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-16T09:16:08.634+03:00  INFO 14028 --- [Laboratory] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-16T09:16:08.893+03:00  WARN 14028 --- [Laboratory] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-16T09:16:08.910+03:00  WARN 14028 --- [Laboratory] [restartedMain] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 998ee3cd-2cc1-4dac-a43e-fceb9352fe1f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-09-16T09:16:08.912+03:00  INFO 14028 --- [Laboratory] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2024-09-16T09:16:09.328+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-09-16T09:16:09.346+03:00  INFO 14028 --- [Laboratory] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-09-16T09:16:09.349+03:00  INFO 14028 --- [Laboratory] [restartedMain] c.e.laboratory.LaboratoryApplication     : Started LaboratoryApplication in 3.287 seconds (process running for 469.311)
+2024-09-16T09:16:09.351+03:00  INFO 14028 --- [Laboratory] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-09-16T09:18:34.439+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-09-16T09:18:34.440+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-09-16T09:18:34.442+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-09-16T09:18:34.448+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-2] c.e.l.Service.TestCategoryService        : Received request to retrieve all categories
+2024-09-16T09:18:34.449+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-2] c.e.l.Service.TestCategoryService        : Retrieving all Categories
+2024-09-16T09:20:17.764+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-4] c.e.l.Service.TestCategoryService        : Received request to retrieve all categories
+2024-09-16T09:20:17.764+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-4] c.e.l.Service.TestCategoryService        : Retrieving all Categories
+2024-09-16T09:20:17.850+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-5] c.e.l.Service.TestCategoryService        : Received request to retrieve all categories
+2024-09-16T09:20:17.851+03:00  INFO 14028 --- [Laboratory] [http-nio-8080-exec-5] c.e.l.Service.TestCategoryService        : Retrieving all Categories
+2024-09-16T09:21:33.522+03:00  INFO 14028 --- [Laboratory] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-16T09:21:33.523+03:00  INFO 14028 --- [Laboratory] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2024-09-16T09:21:33.536+03:00  INFO 14028 --- [Laboratory] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
