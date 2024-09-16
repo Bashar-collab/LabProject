@@ -52,7 +52,7 @@ public class Users {
     private String preferred_language;
 
     @NotBlank
-    private boolean is_admin;
+    private boolean is_admin = false;
 
     @Column(columnDefinition = "CLOB")
     private String fcm_token;
@@ -155,7 +155,7 @@ public class Users {
         this.preferred_language = preferred_language;
     }
 
-    public boolean isIs_admin() {
+    public boolean getIs_admin() {
         return is_admin;
     }
 
@@ -170,20 +170,5 @@ public class Users {
     public void setDeleted_at(Timestamp deleted_at) {
         this.deleted_at = deleted_at;
     }
-
-    /*
-    public Object getProfile(User user) {
-        switch (user.getProfileType()) {
-            case "Doctor":
-                return doctorRepository.findById(user.getProfileId()).orElse(null);
-            case "Nurse":
-                return nurseRepository.findById(user.getProfileId()).orElse(null);
-            case "Patient":
-                return patientRepository.findById(user.getProfileId()).orElse(null);
-            case "LabEmployee":
-                return labEmployeeRepository.findById(user.getProfileId()).orElse(null);
-            default:
-                return null;
-        }
-     */
+    
 }
