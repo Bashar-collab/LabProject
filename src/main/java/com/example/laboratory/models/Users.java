@@ -1,10 +1,7 @@
 package com.example.laboratory.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -29,36 +26,43 @@ public class Users {
     private String password;
 
     @NotBlank(message = "Phone number cannot be empty")
-    @Column(unique = true)  // Unique constraint on phone number
+    @Column(unique = true, name = "phone_number")  // Unique constraint on phone number
     @Pattern(regexp = "^09\\d{8}$") // Regex for phone number that should start with 09 and should be 10 digits
-    private String phone_number;
+    private String phoneNumber;
 
-    @NotBlank(message = "Date of birth cannot be empty")
+    @NotNull(message = "Date of birth cannot be empty")
+    @Past(message = "Date of birth must be in the past")
     private Date date_of_birth;
+    // dateOfBirth
     @NotBlank(message = "Gender cannot be empty")
     private String gender;
 
-    @NotBlank
+//    @NotNull
     @Column(name = "profile_id")
     private Long profileId;
 
-    @NotBlank
+//    @NotBlank(message = "Profile type cannot be empty")
     @Column(name = "profile_type")
     private String profileType;
 
-    private String profile_picture;
+    @Column(name = "profile_picture")
+    private String profilePicture;
+    @NotNull
+    private boolean verified = false;
+
+    @Column(name = "preferred_language")
+    private String preferredLanguage;
+
+    @NotNull
+    @Column(name = "is_admin")
+    private boolean isAdmin = false;
+
+    @Column(name = "fcm_token", columnDefinition = "CLOB")
     @NotBlank
-    private boolean verified;
+    private String fcmToken;
 
-    private String preferred_language;
-
-    @NotBlank
-    private boolean is_admin = false;
-
-    @Column(columnDefinition = "CLOB")
-    private String fcm_token;
-
-    private Timestamp deleted_at;
+//    @Column)
+    private Timestamp deletedAt;
 
     public long getId() {
         return id;
@@ -108,6 +112,22 @@ public class Users {
         this.gender = gender;
     }
 
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phone_number) {
+        this.phoneNumber = phone_number;
+    }
+
     public Long getProfileId() {
         return profileId;
     }
@@ -124,52 +144,43 @@ public class Users {
         this.profileType = profileType;
     }
 
-    public boolean isVerified() {
-        return verified;
+    public String getProfilePicture() {
+        return profilePicture;
     }
 
-    public void setVerified(boolean verified) {
-        this.verified = verified;
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
-    public String getFcm_token() {
-        return fcm_token;
+    public String getPreferredLanguage() {
+        return preferredLanguage;
     }
 
-    public void setFcm_token(String fcm_token) {
-        this.fcm_token = fcm_token;
+    public void setPreferredLanguage(String preferredLanguage) {
+        this.preferredLanguage = preferredLanguage;
     }
 
-    public String getProfile_picture() {
-        return profile_picture;
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
-    public void setProfile_picture(String profile_picture) {
-        this.profile_picture = profile_picture;
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 
-    public String getPreferred_language() {
-        return preferred_language;
+    public String getFcmToken() {
+        return fcmToken;
     }
 
-    public void setPreferred_language(String preferred_language) {
-        this.preferred_language = preferred_language;
+    public void setFcmToken(String fcmToken) {
+        this.fcmToken = fcmToken;
     }
 
-    public boolean getIs_admin() {
-        return is_admin;
+    public Timestamp getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setIs_admin(boolean is_admin) {
-        this.is_admin = is_admin;
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.deletedAt = deletedAt;
     }
-
-    public Timestamp getDeleted_at() {
-        return deleted_at;
-    }
-
-    public void setDeleted_at(Timestamp deleted_at) {
-        this.deleted_at = deleted_at;
-    }
-
 }

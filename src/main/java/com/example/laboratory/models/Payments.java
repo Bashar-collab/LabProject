@@ -32,7 +32,7 @@ public class Payments {
     private PaymentStatus paymentStatus;
 
     @NotBlank
-    private String transaction_id;
+    private String transactionId;
 
     public long getId() {
         return id;
@@ -90,11 +90,11 @@ public class Payments {
         this.paymentStatus = paymentStatus;
     }
 
-    public String getTransaction_id() {
-        return transaction_id;
+    public String getTransactionId() {
+        return transactionId;
     }
 
     public void setTransaction_id(String transaction_id) {
-        this.transaction_id = transaction_id;
+        this.transactionId = transactionId;
     }
 }

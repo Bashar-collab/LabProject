@@ -21,13 +21,13 @@ public class LabNurses {
 
     @NotBlank
     @Column(columnDefinition = "CLOB")
-    private String working_hours;
+    private String workingHours;
 
     @NotBlank
     @Column(columnDefinition = "CLOB")
-    private String contract_details;
+    private String contractDetails;
 
-    private Timestamp deleted_at;
+    private Timestamp deletedAt;
 
     public Long getId() {
         return id;
@@ -53,27 +53,27 @@ public class LabNurses {
         this.nurses = nurses;
     }
 
-    public String getWorking_hours() {
-        return working_hours;
+    public String getWorkingHours() {
+        return workingHours;
     }
 
-    public void setWorking_hours(String working_hours) {
-        this.working_hours = working_hours;
+    public void setWorkingHours(String workingHours) {
+        this.workingHours = workingHours;
     }
 
-    public String getContract_details() {
-        return contract_details;
+    public String getContractDetails() {
+        return contractDetails;
     }
 
-    public void setContract_details(String contract_details) {
-        this.contract_details = contract_details;
+    public void setContractDetails(String contractDetails) {
+        this.contractDetails = contractDetails;
     }
 
-    public Timestamp getDeleted_at() {
-        return deleted_at;
+    public Timestamp getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleted_at(Timestamp deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

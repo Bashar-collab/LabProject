@@ -14,30 +14,25 @@ public class Patients {
     private Long id;
 
     @Column(columnDefinition = "CLOB")
-    private String medical_history;
+    private String medicalHistory;
 
     @Column(columnDefinition = "CLOB")
     private String allergies;
 
     @Column(columnDefinition = "CLOB")
-    private String current_medications;
+    private String currentMedications;
 
-    @NotBlank
-    private String blood_type;
+    private String bloodType;
 
-    @NotBlank
     private double height;
 
-    @NotBlank
     private double weight;
 
-    @NotBlank
-    private String emergency_contact;
+    private String emergencyContact;
 
-    @NotBlank
-    private String emergency_contact_relation;
+    private String emergencyContactRelation;
 
-    private Timestamp deleted_at;
+    private Timestamp deletedAt;
 
     @ManyToMany(fetch = FetchType.LAZY)
     /*
@@ -62,11 +57,11 @@ public class Patients {
     }
 
     public String getMedical_history() {
-        return medical_history;
+        return medicalHistory;
     }
 
     public void setMedical_history(String medical_history) {
-        this.medical_history = medical_history;
+        this.medicalHistory = medical_history;
     }
 
     public String getAllergies() {
@@ -78,19 +73,19 @@ public class Patients {
     }
 
     public String getCurrent_medications() {
-        return current_medications;
+        return currentMedications;
     }
 
     public void setCurrent_medications(String current_medications) {
-        this.current_medications = current_medications;
+        this.currentMedications = current_medications;
     }
 
-    public String getBlood_type() {
-        return blood_type;
+    public String getBloodType() {
+        return bloodType;
     }
 
-    public void setBlood_type(String blood_type) {
-        this.blood_type = blood_type;
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
     }
 
     public double getHeight() {
@@ -117,27 +112,43 @@ public class Patients {
         this.weight = weight;
     }
 
-    public String getEmergency_contact() {
-        return emergency_contact;
+    public String getMedicalHistory() {
+        return medicalHistory;
     }
 
-    public void setEmergency_contact(String emergency_contact) {
-        this.emergency_contact = emergency_contact;
+    public void setMedicalHistory(String medicalHistory) {
+        this.medicalHistory = medicalHistory;
     }
 
-    public String getEmergency_contact_relation() {
-        return emergency_contact_relation;
+    public String getCurrentMedications() {
+        return currentMedications;
     }
 
-    public void setEmergency_contact_relation(String emergency_contact_relation) {
-        this.emergency_contact_relation = emergency_contact_relation;
+    public void setCurrentMedications(String currentMedications) {
+        this.currentMedications = currentMedications;
     }
 
-    public Timestamp getDeleted_at() {
-        return deleted_at;
+    public String getEmergencyContact() {
+        return emergencyContact;
     }
 
-    public void setDeleted_at(Timestamp deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setEmergencyContact(String emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
+
+    public String getEmergencyContactRelation() {
+        return emergencyContactRelation;
+    }
+
+    public void setEmergencyContactRelation(String emergencyContactRelation) {
+        this.emergencyContactRelation = emergencyContactRelation;
+    }
+
+    public Timestamp getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

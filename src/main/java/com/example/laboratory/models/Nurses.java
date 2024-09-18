@@ -16,9 +16,9 @@ public class Nurses {
 
 
     @Column(columnDefinition = "CLOB")
-    private String special_skills;
+    private String specialSkills;
 
-    private Date deleted_at;
+    private Date deletedAt;
 
     public Long getId() {
         return id;
@@ -36,19 +36,19 @@ public class Nurses {
         this.certifications = certifications;
     }
 
-    public String getSpecial_skills() {
-        return special_skills;
+    public String getSpecialSkills() {
+        return specialSkills;
     }
 
-    public void setSpecial_skills(String special_skills) {
-        this.special_skills = special_skills;
+    public void setSpecialSkills(String specialSkills) {
+        this.specialSkills = specialSkills;
     }
 
-    public Date getDeleted_at() {
-        return deleted_at;
+    public Date getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleted_at(Date deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Date deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

@@ -17,16 +17,16 @@ public class Labs {
     private Users users;
 
     @NotBlank
-    private String lab_name;
+    private String labName;
 
     @NotBlank
-    private String contact_number;
+    private String contactNumber;
 
     @NotBlank
     @Column(columnDefinition = "CLOB")
-    private String operating_hours;
+    private String operatingHours;
 
-    private Time deleted_at;
+    private Time deletedAt;
     public Long getId() {
         return id;
     }
@@ -35,36 +35,36 @@ public class Labs {
         this.id = id;
     }
 
-    public String getLab_name() {
-        return lab_name;
+    public String getLabName() {
+        return labName;
     }
 
-    public void setLab_name(String lab_name) {
-        this.lab_name = lab_name;
+    public void setLabName(String labName) {
+        this.labName = labName;
     }
 
-    public String getContact_number() {
-        return contact_number;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public void setContact_number(String contact_number) {
-        this.contact_number = contact_number;
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
-    public String getOperating_hours() {
-        return operating_hours;
+    public String getOperatingHours() {
+        return operatingHours;
     }
 
-    public void setOperating_hours(String operating_hours) {
-        this.operating_hours = operating_hours;
+    public void setOperatingHours(String operatingHours) {
+        this.operatingHours = operatingHours;
     }
 
-    public Time getDeleted_at() {
-        return deleted_at;
+    public Time getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleted_at(Time deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Time deletedAt) {
+        this.deletedAt = deletedAt;
     }
 
     public Users getUsers() {

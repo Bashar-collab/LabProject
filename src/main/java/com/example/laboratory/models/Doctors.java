@@ -15,12 +15,12 @@ public class Doctors {
     private Specialization specialization;
 
     @NotBlank
-    private double consultation_fee;
+    private double consultationFee;
 
     @NotBlank
     private String bio;
 
-    private Timestamp deleted_at;
+    private Timestamp deletedAt;
 
     public Long getId() {
         return id;
@@ -38,12 +38,12 @@ public class Doctors {
         this.specialization = specialization;
     }
 
-    public double getConsultation_fee() {
-        return consultation_fee;
+    public double getConsultationFee() {
+        return consultationFee;
     }
 
-    public void setConsultation_fee(double consultation_fee) {
-        this.consultation_fee = consultation_fee;
+    public void setConsultationFee(double consultationFee) {
+        this.consultationFee = consultationFee;
     }
 
     public String getBio() {
@@ -54,11 +54,11 @@ public class Doctors {
         this.bio = bio;
     }
 
-    public Timestamp getDeleted_at() {
-        return deleted_at;
+    public Timestamp getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleted_at(Timestamp deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

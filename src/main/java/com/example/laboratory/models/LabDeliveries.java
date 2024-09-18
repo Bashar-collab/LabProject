@@ -23,11 +23,11 @@ public class LabDeliveries {
     private Patients patients;
 
     @NotBlank
-    private String sample_type;
+    private String sampleType;
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatus deliveryStatus;
-    private String estimated_time;
+    private String estimatedTime;
 
     public Long getId() {
         return id;
@@ -61,12 +61,12 @@ public class LabDeliveries {
         this.patients = patients;
     }
 
-    public String getSample_type() {
-        return sample_type;
+    public String getSampleType() {
+        return sampleType;
     }
 
-    public void setSample_type(String sample_type) {
-        this.sample_type = sample_type;
+    public void setSampleType(String sampleType) {
+        this.sampleType = sampleType;
     }
 
     public DeliveryStatus getDeliveryStatus() {
@@ -77,11 +77,11 @@ public class LabDeliveries {
         this.deliveryStatus = deliveryStatus;
     }
 
-    public String getEstimated_time() {
-        return estimated_time;
+    public String getEstimatedTime() {
+        return estimatedTime;
     }
 
-    public void setEstimated_time(String estimated_time) {
-        this.estimated_time = estimated_time;
+    public void setEstimatedTime(String estimatedTime) {
+        this.estimatedTime = estimatedTime;
     }
 }

@@ -18,7 +18,7 @@ public class Otps {
     @NotBlank
     private String otp;
 
-    private Timestamp expires_at;
+    private Timestamp expiresAt;
 
     public Long getId() {
         return id;
@@ -44,11 +44,11 @@ public class Otps {
         this.otp = otp;
     }
 
-    public Timestamp getExpires_at() {
-        return expires_at;
+    public Timestamp getExpiresAt() {
+        return expiresAt;
     }
 
-    public void setExpires_at(Timestamp expires_at) {
-        this.expires_at = expires_at;
+    public void setExpiresAt(Timestamp expiresAt) {
+        this.expiresAt = expiresAt;
     }
 }

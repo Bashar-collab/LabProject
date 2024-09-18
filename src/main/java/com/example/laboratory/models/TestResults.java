@@ -16,14 +16,14 @@ public class TestResults {
     private PatientsRequests patientsRequests;
 
     @NotBlank
-    private String test_type;
+    private String testType;
 
     @NotBlank
     @Column(columnDefinition = "CLOB")
     private String result;
 
     @NotBlank
-    private Date date_of_test;
+    private Date dateOfTest;
 
     @Column(columnDefinition = "CLOB")
     private String notes;
@@ -47,12 +47,12 @@ public class TestResults {
         this.patientsRequests = patientsRequests;
     }
 
-    public String getTest_type() {
-        return test_type;
+    public String getTestType() {
+        return testType;
     }
 
-    public void setTest_type(String test_type) {
-        this.test_type = test_type;
+    public void setTestType(String testType) {
+        this.testType = testType;
     }
 
     public String getResult() {
@@ -63,12 +63,12 @@ public class TestResults {
         this.result = result;
     }
 
-    public Date getDate_of_test() {
-        return date_of_test;
+    public Date getDateOfTest() {
+        return dateOfTest;
     }
 
-    public void setDate_of_test(Date date_of_test) {
-        this.date_of_test = date_of_test;
+    public void setDateOfTest(Date dateOfTest) {
+        this.dateOfTest = dateOfTest;
     }
 
     public String getNotes() {

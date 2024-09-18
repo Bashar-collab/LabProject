@@ -23,9 +23,9 @@ public class Addresses {
 
     private String street;
 
-    private String building_number;
+    private String buildingNumber;
 
-    private String apartment_number;
+    private String apartmentNumber;
 
     public Long getId() {
         return id;
@@ -67,19 +67,19 @@ public class Addresses {
         this.street = street;
     }
 
-    public String getBuilding_number() {
-        return building_number;
+    public String getBuildingNumber() {
+        return buildingNumber;
     }
 
-    public void setBuilding_number(String building_number) {
-        this.building_number = building_number;
+    public void setBuildingNumber(String buildingNumber) {
+        this.buildingNumber = buildingNumber;
     }
 
-    public String getApartment_number() {
-        return apartment_number;
+    public String getApartmentNumber() {
+        return apartmentNumber;
     }
 
-    public void setApartment_number(String apartment_number) {
-        this.apartment_number = apartment_number;
+    public void setApartmentNumber(String apartmentNumber) {
+        this.apartmentNumber = apartmentNumber;
     }
 }

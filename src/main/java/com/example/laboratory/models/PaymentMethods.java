@@ -13,7 +13,7 @@ public class PaymentMethods {
 
     @NotBlank
     @Size(min = 3, max = 20)
-    private String method_name;
+    private String methodName;
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
@@ -26,12 +26,12 @@ public class PaymentMethods {
         this.id = id;
     }
 
-    public String getMethod_name() {
-        return method_name;
+    public String getMethodName() {
+        return methodName;
     }
 
-    public void setMethod_name(String method_name) {
-        this.method_name = method_name;
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
     }
 
     public PaymentStatus getPaymentStatus() {

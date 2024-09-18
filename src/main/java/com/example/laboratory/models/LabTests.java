@@ -22,7 +22,7 @@ public class LabTests {
     @NotBlank
     private double cost;
 
-    private Timestamp deleted_at;
+    private Timestamp deletedAt;
 
     public long getId() {
         return id;
@@ -56,11 +56,11 @@ public class LabTests {
         this.cost = cost;
     }
 
-    public Timestamp getDeleted_at() {
-        return deleted_at;
+    public Timestamp getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleted_at(Timestamp deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

@@ -19,9 +19,9 @@ public class LabEmployees {
 
     @NotNull
     @Column(columnDefinition = "CLOB")
-    private String contract_details;
+    private String contractDetails;
 
-    private Timestamp deleted_at;
+    private Timestamp deletedAt;
 
     public LabEmployees() {
 
@@ -43,19 +43,19 @@ public class LabEmployees {
         this.lab = lab;
     }
 
-    public String getContract_details() {
-        return contract_details;
+    public String getContractDetails() {
+        return contractDetails;
     }
 
-    public void setContract_details(String contract_details) {
-        this.contract_details = contract_details;
+    public void setContractDetails(String contractDetails) {
+        this.contractDetails = contractDetails;
     }
 
-    public Timestamp getDeleted_at() {
-        return deleted_at;
+    public Timestamp getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleted_at(Timestamp deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

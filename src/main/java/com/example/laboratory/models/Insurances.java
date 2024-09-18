@@ -14,17 +14,17 @@ public class Insurances {
     private Patients patients;
 
     @NotBlank
-    private String provider_name;
+    private String providerName;
 
     @NotBlank
-    private String insurance_number;
+    private String insuranceNumber;
 
     @NotBlank
     @Column(columnDefinition = "CLOB")
-    private String coverage_details;
+    private String coverageDetails;
 
     @NotBlank
-    private String contact_info;
+    private String contactInfo;
 
     public Long getId() {
         return id;
@@ -42,35 +42,35 @@ public class Insurances {
         this.patients = patients;
     }
 
-    public String getProvider_name() {
-        return provider_name;
+    public String getProviderName() {
+        return providerName;
     }
 
-    public void setProvider_name(String provider_name) {
-        this.provider_name = provider_name;
+    public void setProviderName(String providerName) {
+        this.providerName = providerName;
     }
 
-    public String getInsurance_number() {
-        return insurance_number;
+    public String getInsuranceNumber() {
+        return insuranceNumber;
     }
 
-    public void setInsurance_number(String insurance_number) {
-        this.insurance_number = insurance_number;
+    public void setInsuranceNumber(String insuranceNumber) {
+        this.insuranceNumber = insuranceNumber;
     }
 
-    public String getCoverage_details() {
-        return coverage_details;
+    public String getCoverageDetails() {
+        return coverageDetails;
     }
 
-    public void setCoverage_details(String coverage_details) {
-        this.coverage_details = coverage_details;
+    public void setCoverageDetails(String coverageDetails) {
+        this.coverageDetails = coverageDetails;
     }
 
-    public String getContact_info() {
-        return contact_info;
+    public String getContactInfo() {
+        return contactInfo;
     }
 
-    public void setContact_info(String contact_info) {
-        this.contact_info = contact_info;
+    public void setContactInfo(String contactInfo) {
+        this.contactInfo = contactInfo;
     }
 }

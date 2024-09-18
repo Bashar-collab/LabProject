@@ -14,7 +14,7 @@ public class Tests {
     private TestCategories testCategories;
 
     @NotBlank
-    private String test_name;
+    private String testName;
 
     private String description;
 
@@ -34,12 +34,12 @@ public class Tests {
         this.testCategories = testCategories;
     }
 
-    public String getTest_name() {
-        return test_name;
+    public String getTestName() {
+        return testName;
     }
 
-    public void setTest_name(String test_name) {
-        this.test_name = test_name;
+    public void setTestName(String test_name) {
+        this.testName = test_name;
     }
 
     public String getDescription() {

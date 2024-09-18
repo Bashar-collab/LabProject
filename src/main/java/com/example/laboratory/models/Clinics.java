@@ -20,13 +20,13 @@ public class Clinics {
     private String name;
 
     @NotBlank
-    private String contact_number;
+    private String contactNumber;
 
     @NotBlank
     @Column(columnDefinition = "CLOB")
-    private String operating_hours;
+    private String operatingHours;
 
-    private Timestamp deleted_at;
+    private Timestamp deletedAt;
 
     public Long getId() {
         return id;
@@ -52,27 +52,27 @@ public class Clinics {
         this.name = name;
     }
 
-    public String getContact_number() {
-        return contact_number;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public void setContact_number(String contact_number) {
-        this.contact_number = contact_number;
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
-    public String getOperating_hours() {
-        return operating_hours;
+    public String getOperatingHours() {
+        return operatingHours;
     }
 
-    public void setOperating_hours(String operating_hours) {
-        this.operating_hours = operating_hours;
+    public void setOperatingHours(String operatingHours) {
+        this.operatingHours = operatingHours;
     }
 
-    public Timestamp getDeleted_at() {
-        return deleted_at;
+    public Timestamp getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleted_at(Timestamp deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }

@@ -30,7 +30,7 @@ public class Feedbacks {
     @Column(columnDefinition = "NUMBER")
     private double rate;
 
-    private Timestamp deleted_at;
+    private Timestamp deletedAt;
 
     public Long getId() {
         return id;
@@ -80,11 +80,11 @@ public class Feedbacks {
         this.rate = rate;
     }
 
-    public Timestamp getDeleted_at() {
-        return deleted_at;
+    public Timestamp getDeletedAt() {
+        return deletedAt;
     }
 
-    public void setDeleted_at(Timestamp deleted_at) {
-        this.deleted_at = deleted_at;
+    public void setDeletedAt(Timestamp deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }
