@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -32,7 +33,7 @@ public class Users {
 
     @NotNull(message = "Date of birth cannot be empty")
     @Past(message = "Date of birth must be in the past")
-    private Date date_of_birth;
+    private LocalDate dateOfBirth;
     // dateOfBirth
     @NotBlank(message = "Gender cannot be empty")
     private String gender;
@@ -96,12 +97,12 @@ public class Users {
         this.password = password;
     }
 
-    public Date getDate_of_birth() {
-        return date_of_birth;
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public void setDate_of_birth(Date date_of_birth) {
-        this.date_of_birth = date_of_birth;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public String getGender() {
