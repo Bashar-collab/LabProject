@@ -13,18 +13,16 @@ public class PatientResolver implements ProfileResolver{
     @Autowired
     private PatientRepository patientRepository;
 
-
+    private Patients patients;
     @Override
     public Long getId() {
-        Patients patients = new Patients();
         return patients.getId();
     }
 
     @Override
     public Long createProfile(Users user) {
-        Patients patient = new Patients();
         // set other fields
-        return patientRepository.save(patient).getId();  // Save patient profile in the database
+        return patientRepository.save(patients).getId();  // Save patient profile in the database
     }
 
     @Override
