@@ -49,20 +49,20 @@ public class Users {
     @Column(name = "profile_picture")
     private String profilePicture;
     @NotNull
+    @Column(nullable = false)
     private boolean verified = false;
 
     @Column(name = "preferred_language")
     private String preferredLanguage;
 
     @NotNull
-    @Column(name = "is_admin")
+    @Column(name = "is_admin", nullable = false)
     private boolean isAdmin = false;
 
     @Column(name = "fcm_token", columnDefinition = "CLOB")
     @NotBlank
     private String fcmToken;
 
-//    @Column)
     private Timestamp deletedAt;
 
     public long getId() {

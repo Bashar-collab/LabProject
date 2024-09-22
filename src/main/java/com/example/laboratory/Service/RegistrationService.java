@@ -1,7 +1,9 @@
 package com.example.laboratory.Service;
 
+import com.example.laboratory.EntityResolver.ProfileResolver.Factory.ProfileResolverFactory;
+import com.example.laboratory.ExceptionHandler.ExceptionType;
+import com.example.laboratory.ExceptionHandler.Factory.UserExceptionFactory;
 import com.example.laboratory.Repository.UserRepository;
-import com.example.laboratory.Request.UserRegistrationRequest;
 import com.example.laboratory.models.Users;
 import org.apache.catalina.User;
 import org.slf4j.Logger;
@@ -11,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class RegistrationService {
 
     @Autowired
     private UserRepository userRepository;
@@ -22,50 +24,87 @@ public class UserService {
     @Autowired
     private FCMService fcmService;
 
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static final Logger logger = LoggerFactory.getLogger(RegistrationService.class);
 
-    public Users registerUser(UserRegistrationRequest userRegistrationRequest)
+    @Autowired
+    private ProfileResolverFactory profileResolverFactory;
+    public Users registerUser(Users user)
     {
 
-        logger.info("Received registration request for email: {}", userRegistrationRequest.getEmail());
+        user.setEmail(user.getEmail().toLowerCase());
+        logger.info("Received registration request for email: {}", user.getEmail());
 
-        if (userRepository.existsByEmail(userRegistrationRequest.getEmail())) {
-            logger.warn("Email already exists: {}", userRegistrationRequest.getEmail());
-            throw new RuntimeException("Email already exists");
+//        logger.info("admin", userRepository.existsByIs_admin(user.getIs_admin()));
+        if (userRepository.existsByEmail(user.getEmail())) {
+            logger.warn("Email already exists: {}", user.getEmail());
+            throw UserExceptionFactory.createException(
+                    ExceptionType.USER_ALREADY_EXISTS,
+                    "Email already exists: " + user.getEmail()
+            );
         }
 
-        Users user = new Users();
-        user.setUsername(userRegistrationRequest.getUsername());
-        user.setEmail(userRegistrationRequest.getEmail());
-        user.setPassword(passwordEncoder.encode(userRegistrationRequest.getPassword()));
-        user.setFcm_token(userRegistrationRequest.getFcm_token());
+        if (userRepository.existsByPhoneNumber(user.getPhoneNumber())) {
+            logger.warn("Phone number already exists: {}", user.getPhoneNumber());
+            throw UserExceptionFactory.createException(
+                    ExceptionType.USER_ALREADY_EXISTS,
+                    "Phone number already exists: " + user.getPhoneNumber()
+            );
+        }
 
-        // Set isAdmin and isVerified field (defaults to false)
-        user.setVerified(false);
-        user.setIs_admin(false);
+
+        // Saving user's credentials
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+
 
         logger.debug("User object created: {}", user);
         // Validate FCM token
-        if (user.getFcm_token() != null && !fcmService.isValidFCMToken(user.getFcm_token())) {
-            logger.error("Invalid FCM token provided for user: {}", userRegistrationRequest.getEmail());
-            throw new RuntimeException("Invalid FCM token");
+        logger.info("Validating FCM token for user: {}", user.getEmail());
+
+        if (user.getFcmToken() != null && !fcmService.isValidFCMToken(user.getFcmToken())) {
+            logger.error("Invalid FCM token provided for user: {}", user.getEmail());
+            throw UserExceptionFactory.createException(
+                    ExceptionType.INVALID_FCM_TOKEN,
+                    "Invalid FCM token"
+            );
         }
-//
-//        try{
-//
-//        }
-        return userRepository.save(user);
+        logger.info("User registered successfully with ID: {}", user.getId());
+
+        logger.info(user.getProfileType());
+        // Create the appropriate profile based on the selected type
+        Long profileId = profileResolverFactory.createProfile(user);
+
+        logger.info(String.valueOf(profileId));
+        // Set the profileId in Users entity
+        user.setProfileId(profileId);
+
+        // Save the user (without a profile initially)
+        userRepository.save(user);
+        // Optionally associate the profile ID with the user if needed (in a polymorphic relationship)
+        return user;  // Return user with the created profile
     }
 
     public void updateFCMToken(Long userId, String fcmToken) {
+        logger.info("Updating FCM token for user ID: {}", userId);
         Users user = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> UserExceptionFactory.createException(
+                        ExceptionType.USER_NOT_FOUND,
+                        "User not found"
 
+                ));
+
+        logger.info("Validating new FCM token for user ID: {}", userId);
         if (fcmService.isValidFCMToken(fcmToken)) {
-            user.setFcm_token(fcmToken);
+            user.setFcmToken(fcmToken);
             userRepository.save(user);
+            logger.info("FCM token updated successfully for user ID: {}", userId);
+
         } else {
-            throw new RuntimeException("Invalid FCM token");
+            logger.error("Invalid FCM token provided for user ID: {}", userId);
+            throw UserExceptionFactory.createException(
+                    ExceptionType.INVALID_FCM_TOKEN,
+                    "Invalid FCM token"
+            );
         }
     }
 }

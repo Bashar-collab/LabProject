@@ -48,6 +48,7 @@ public class TestCategoryService {
             throw new DuplicateEntityException("Category with the same name already exists: " + categoryName);
 
         } catch (Exception e) {
+            // Handle any other error
             logger.error("Error adding category: {}", e.getMessage(), e);
             throw new DuplicateEntityException("Error adding category" + e.getMessage());
         }
