@@ -15,14 +15,14 @@ public class LabEmployeeResolver implements ProfileResolver{
     @Autowired
     private LabEmployeesRepository labEmployeesRepository;
 
-    private LabEmployees labEmployees;
     @Override
     public Long getId() {
-        return labEmployees.getId();
+        return null;
     }
 
     @Override
     public Long createProfile(Users user) {
+        LabEmployees labEmployees = new LabEmployees();
         // set other fields
         return labEmployeesRepository.save(labEmployees).getId();  // Save Lab employee profile in the database    };
     }

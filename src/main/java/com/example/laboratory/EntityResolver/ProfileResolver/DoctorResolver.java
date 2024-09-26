@@ -21,11 +21,12 @@ public class DoctorResolver implements ProfileResolver{
 
     @Override
     public Long getId() {
-        return doctors.getId();
+        return null;
     }
 
     @Override
     public Long createProfile(Users user) {
+        Doctors doctor = new Doctors();
         // set other fields
         return doctorRepository.save(doctors).getId();  // Save Doctor profile in the database    };
     }

@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,8 +24,9 @@ import static org.hibernate.Hibernate.map;
 @CrossOrigin(origins = "*", maxAge = 3600) // allows for a specific domains to make request for a limited time
 @RestController
 @RequestMapping("/api")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class TestCategoryController {
-    private static final Logger logger = LoggerFactory.getLogger(TestCategoryService.class);
+    private static final Logger logger = LoggerFactory.getLogger(TestCategoryController.class);
 
     private final TestCategoryService testCategoryService;
 

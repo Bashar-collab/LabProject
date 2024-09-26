@@ -14,7 +14,7 @@ import java.io.IOException;
 @Configuration
 public class FirebaseConfig {
 
-    private static final Logger logger = LoggerFactory.getLogger(RegistrationService.class);
+    private static final Logger logger = LoggerFactory.getLogger(FirebaseConfig.class);
 
     @Bean
     public FirebaseApp firebaseApp() throws IOException {

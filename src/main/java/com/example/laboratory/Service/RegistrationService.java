@@ -58,19 +58,9 @@ public class RegistrationService {
 
 
         logger.debug("User object created: {}", user);
-        // Validate FCM token
-        logger.info("Validating FCM token for user: {}", user.getEmail());
 
-        if (user.getFcmToken() != null && !fcmService.isValidFCMToken(user.getFcmToken())) {
-            logger.error("Invalid FCM token provided for user: {}", user.getEmail());
-            throw UserExceptionFactory.createException(
-                    ExceptionType.INVALID_FCM_TOKEN,
-                    "Invalid FCM token"
-            );
-        }
-        logger.info("User registered successfully with ID: {}", user.getId());
 
-        logger.info(user.getProfileType());
+        logger.info("User's profile {}", user.getProfileType());
         // Create the appropriate profile based on the selected type
         Long profileId = profileResolverFactory.createProfile(user);
 
@@ -78,8 +68,9 @@ public class RegistrationService {
         // Set the profileId in Users entity
         user.setProfileId(profileId);
 
-        // Save the user (without a profile initially)
+        // Save the user
         userRepository.save(user);
+        logger.info("User registered successfully with ID: {}", user.getId());
         // Optionally associate the profile ID with the user if needed (in a polymorphic relationship)
         return user;  // Return user with the created profile
     }

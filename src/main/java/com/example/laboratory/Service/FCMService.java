@@ -11,7 +11,7 @@ import java.util.Collections;
 
 @Service
 public class FCMService {
-    private static final Logger logger = LoggerFactory.getLogger(TestCategoryService.class);
+    private static final Logger logger = LoggerFactory.getLogger(FCMService.class);
 
     public void sendNotification(String fcmToken, String title, String body) {
         logger.info("Sending notification");

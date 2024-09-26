@@ -1,60 +1,88 @@
-package com.example.laboratory.Security;
+package com.example.laboratory.Config.SecurityConfig;
 
+import com.example.laboratory.JWT.JwtRequestFilter;
+import com.example.laboratory.Service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
-/*
+
+    private final JwtRequestFilter jwtRequestFilter;
+    private final CustomUserDetailsService customUserDetailsService;
+
+
+    public SecurityConfig(JwtRequestFilter jwtRequestFilter, CustomUserDetailsService customUserDetailsService) {
+        this.jwtRequestFilter = jwtRequestFilter;
+        this.customUserDetailsService = customUserDetailsService;
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // Disabling the default form login
 // Configuring form login and logout, and permit all users to access the signup page
         http
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers("/**").permitAll() // Allow access to the signup page
+                        .requestMatchers("/api/register").permitAll() // Allow access to the signup page
+                        .requestMatchers("/api/login").permitAll()
+                        .requestMatchers("/api/logout").permitAll()// Allow access to the login page
                         .anyRequest().authenticated() // Require authentication for any other request
                 )
-                .formLogin((form) -> form
-                        .loginPage("/signup")
-                        .permitAll() // Allow all users to see the login page
-                )
-                .logout(LogoutConfigurer::permitAll);
+                .logout(LogoutConfigurer::permitAll)
+                .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                ;
+
+        // Add JWT filter before UsernamePasswordAuthenticationFilter
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         // Disabling default form login and HTTP Basic authentication
-        http
-                .formLogin(AbstractHttpConfigurer::disable)
-                .httpBasic(AbstractHttpConfigurer::disable);
+//        http
+//                .formLogin(AbstractHttpConfigurer::disable)
+//                .httpBasic(AbstractHttpConfigurer::disable);
 
         return http.build();
     }
 
- */
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+    }
+
+    // Expose AuthenticationManager bean
     @Bean
-public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http
-            .csrf(csrf -> csrf.disable())  // Disable CSRF protection if you're allowing unrestricted access
-
-        // Allow access to all requests without authentication
-        .authorizeHttpRequests(authz -> authz
-            .anyRequest().permitAll()  // Permit all requests without requiring authentication
-        )
-
-        // Disable form login and HTTP Basic authentication
-        .formLogin(AbstractHttpConfigurer::disable)
-        .httpBasic(AbstractHttpConfigurer::disable);
-
-    return http.build();
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) //
+    {
+        /*
+        AuthenticationManager is an interface that is responsible for
+        verifying credentials
+         */
+        // NEED TO REVISE IT
+        try {
+            return authConfig.getAuthenticationManager();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
-}
-
-
 
