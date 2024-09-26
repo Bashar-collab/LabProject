@@ -18,12 +18,6 @@ public class NurseResolver implements ProfileResolver{
     private static final Logger logger = LoggerFactory.getLogger(TestCategoryService.class);
 
 
-//    private final Nurses nurses;
-
-//    public NurseResolver(Nurses nurses) {
-//        this.nurses = nurses;
-//    }
-
     @Override
     public Long getId() {
         return null;
@@ -31,10 +25,9 @@ public class NurseResolver implements ProfileResolver{
 
     @Override
     public Long createProfile(Users user) {
-        logger.info("Creating profile for: {}", user.getProfileType());
         Nurses nurses = new Nurses();
         // set other fields
-        return nursesRepository.save(nurses).getId();  // Save nurse profile in the database    }
+        return nursesRepository.save(nurses).getId();  // Save nurse profile in the database
     }
     @Override
     public String getProfileType()

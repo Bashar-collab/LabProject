@@ -16,8 +16,6 @@ public class DoctorResolver implements ProfileResolver{
     @Autowired
     private DoctorRepository doctorRepository;
 
-//    @Autowired
-    private Doctors doctors;
 
     @Override
     public Long getId() {
@@ -26,8 +24,7 @@ public class DoctorResolver implements ProfileResolver{
 
     @Override
     public Long createProfile(Users user) {
-        Doctors doctor = new Doctors();
-        // set other fields
+        Doctors doctors = new Doctors();
         return doctorRepository.save(doctors).getId();  // Save Doctor profile in the database    };
     }
 

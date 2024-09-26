@@ -21,16 +21,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomUserDetailsService.class);
 
-
-
-//    public UserDetails loadUserByPhoneNumber(String phoneNumber) throws UsernameNotFoundException
-//    {
-//        logger.info("Loading user: {}", phoneNumber);
-//        Users user = userRepository.findByPhoneNumber(phoneNumber)
-//                .orElseThrow(() -> new UserNotFoundException("User not found"));
-//        return new CustomUserDetails(user);
-//    }
-
     @Override
     public UserDetails loadUserByUsername(String phoneNumber) throws UsernameNotFoundException {
         logger.info("Loading user: {}", phoneNumber);

@@ -1,13 +1,11 @@
 package com.example.laboratory.Config.SecurityConfig;
 
-import com.example.laboratory.Service.CustomUserDetailsService;
 import com.example.laboratory.models.Users;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -25,7 +23,6 @@ public class CustomUserDetails implements UserDetails {
 
 
     public Users getUsers() {
-        logger.info("Username in getUsers() {}", users.getUsername());
         return users;
     }
 

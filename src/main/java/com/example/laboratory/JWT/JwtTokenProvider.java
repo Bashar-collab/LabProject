@@ -5,9 +5,7 @@ import com.example.laboratory.Service.CustomUserDetailsService;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -18,11 +16,7 @@ import java.util.function.Function;
 @Service
 public class JwtTokenProvider {
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
-    /*
-        jwtSecret: This is the secret key used to sign the JWT. It ensures that the JWT has not been tampered with and is from a trusted source.
-        jwtExpirationMs: This is the duration for which the JWT is valid, in milliseconds. It determines how long a token remains usable before it expires.
-        jwtCookie: This is the name of the cookie where the JWT is stored. It allows the server to manage authentication by setting and reading JWT cookies.
-    */
+
     @Value("${lab.app.jwtSecretKey}")
     private String jwtSecretKey;
 
@@ -35,7 +29,6 @@ public class JwtTokenProvider {
     public JwtTokenProvider(CustomUserDetailsService customUserDetailsService) {
         this.customUserDetailsService = customUserDetailsService;
     }
-//    @Autowired
 
     // Generate Access Token
     public String generateAccessToken(String phoneNumber) {

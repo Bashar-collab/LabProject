@@ -57,11 +57,6 @@ public class SecurityConfig {
         // Add JWT filter before UsernamePasswordAuthenticationFilter
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
-        // Disabling default form login and HTTP Basic authentication
-//        http
-//                .formLogin(AbstractHttpConfigurer::disable)
-//                .httpBasic(AbstractHttpConfigurer::disable);
-
         return http.build();
     }
 
@@ -73,11 +68,6 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) //
     {
-        /*
-        AuthenticationManager is an interface that is responsible for
-        verifying credentials
-         */
-        // NEED TO REVISE IT
         try {
             return authConfig.getAuthenticationManager();
         } catch (Exception e) {

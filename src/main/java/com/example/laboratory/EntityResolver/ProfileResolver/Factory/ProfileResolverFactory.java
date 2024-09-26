@@ -22,27 +22,18 @@ public class ProfileResolverFactory {
     @Autowired
     public ProfileResolverFactory(List<ProfileResolver> resolverList) {
         for (ProfileResolver resolver : resolverList) {
-            logger.info("Registering resolver for profile type: {}", resolver.getProfileType());
             resolvers.put(resolver.getProfileType(), resolver);
         }
     }
 
     public Long createProfile(Users user) {
-        logger.info("Profile Type: {}", user.getProfileType());
         ProfileResolver resolver = resolvers.get(user.getProfileType());
         if (resolver != null) {
-            logger.info("Resolver profile Type: {}", user.getProfileType());
             return resolver.createProfile(user);
         } else {
             throw new IllegalArgumentException("Invalid profile type: " + user.getProfileType());
         }
 
-//        logger.info(user.getProfileType());
-//        ProfileResolver resolver = resolvers.get(user.getProfileType());
-//        if (resolver == null) {
-//            throw new IllegalArgumentException("Invalid profile type: " + user.getProfileType());
-//        }
-//        return resolver.createProfile(user);
     }
     public ProfileResolver getResolver(String profileType) {
         return resolvers.get(profileType);

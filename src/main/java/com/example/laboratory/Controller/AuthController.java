@@ -131,23 +131,16 @@ public class AuthController {
             loginService.updateFcmToken(user.getId(), loginRequest.getFcmToken());  // Update FCM token in DB
         }
         // Load user's details
-//        UserDetails userDetails = customUserDetailsService.loadUserByUsername(loginRequest.getPhoneNumber());
         logger.info("User's Details name {}", userDetails.getUsername());
 
         // Generate Access and Refresh Tokens
         logger.info("User's phone number to generate token is {}", loginRequest.getPhoneNumber());
         String accessToken = jwtTokenProvider.generateAccessToken(loginRequest.getPhoneNumber());
-//        String refreshToken = jwtTokenProvider.generateRefreshToken(loginRequest.getPhoneNumber());
 
         logger.info("User's authorizes: {}", userDetails.getAuthorities());
 
-        // Return the token in the header
 
         // Return tokens in response
-//        Map<String, String> tokens = new HashMap<>();
-//        tokens.put("accessToken", accessToken);
-//        tokens.put("refreshToken", refreshToken);
-//        logger.info("Token is generated successfully " + accessToken);
         return ok()
                 .body(new AuthResponse(accessToken,"Logged in Successfully!"));
     }
@@ -172,9 +165,7 @@ public class AuthController {
         // Generate a new access token
         String refreshToken = jwtTokenProvider.generateRefreshToken(phoneNumber);
 
-//        Map<String, String> response  = new HashMap<>();
-//        response.put("refreshToken", refreshToken);
-
+        // return refresh token in response
         return ResponseEntity.ok()
                 .body(new MessageResponse(refreshToken));
     }
@@ -186,8 +177,7 @@ public class AuthController {
         String authHeader = request.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
-//            logger.info("logout token: " + token);
-            // Optional: Add logic to invalidate the token (blacklisting or setting expiration)
+            // invalidate token
             jwtTokenProvider.expireToken(token);
             // Clear SecurityContext (logs the user out)
             SecurityContextHolder.clearContext();

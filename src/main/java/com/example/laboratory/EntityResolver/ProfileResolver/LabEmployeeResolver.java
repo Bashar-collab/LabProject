@@ -23,7 +23,6 @@ public class LabEmployeeResolver implements ProfileResolver{
     @Override
     public Long createProfile(Users user) {
         LabEmployees labEmployees = new LabEmployees();
-        // set other fields
         return labEmployeesRepository.save(labEmployees).getId();  // Save Lab employee profile in the database    };
     }
 
