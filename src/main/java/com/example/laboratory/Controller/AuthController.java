@@ -13,6 +13,7 @@ import com.example.laboratory.Service.FCMService;
 import com.example.laboratory.Service.LoginService;
 import com.example.laboratory.Service.RegistrationService;
 import com.example.laboratory.models.Users;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -20,10 +21,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,7 +38,6 @@ import java.util.Map;
 import static org.springframework.http.ResponseEntity.ok;
 
 
-@CrossOrigin(origins = "*", maxAge = 3600) // allows for a specific domains to make request for a limited time
 @RestController
 @RequestMapping("/api")
 public class AuthController {
@@ -145,15 +147,18 @@ public class AuthController {
                 .body(new AuthResponse(accessToken,"Logged in Successfully!"));
     }
 
-    @PostMapping("/api/refresh")
-    public ResponseEntity<?> refreshAccessToken(@RequestBody Map<String, String> request) {
-        String accessToken = request.get("accessToken");
+    @PostMapping("/refresh")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> refreshAccessToken(@RequestHeader("Authorization") String authorizationHeader) {
+        logger.info("Refresh token is requested");
+        try{
 
+        String accessToken = authorizationHeader.substring(7);
         // Validate the refresh token (check expiration, signature, etc.)
-        if (!jwtTokenProvider.validateToken(accessToken)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(new MessageResponse("Invalid or expired refresh token."));
-        }
+//        if (!jwtTokenProvider.validateToken(accessToken)) {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+//                    .body(new MessageResponse("Invalid or expired refresh token."));
+//        }
         // Get the phone number (subject) from the refresh token
         String phoneNumber = jwtTokenProvider.extractPhoneNumber(accessToken);
 
@@ -167,20 +172,33 @@ public class AuthController {
 
         // return refresh token in response
         return ResponseEntity.ok()
-                .body(new MessageResponse(refreshToken));
+                .body(new AuthResponse(refreshToken, null));
+    } catch (IllegalArgumentException e) {
+            // Handle illegal argument exceptions
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new MessageResponse("Invalid input: " + e.getMessage()));
+        } catch (Exception e) {
+            // Handle all other exceptions
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new MessageResponse("An error occurred: " + e.getMessage()));
+        }
     }
 
 
+
     @PostMapping("/logout")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> logoutUser(HttpServletRequest request) {
         // Retrieve the JWT token from the Authorization header
         String authHeader = request.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring(7);
             // invalidate token
-            jwtTokenProvider.expireToken(token);
+            if(!jwtTokenProvider.isTokenExpired(token))
+                jwtTokenProvider.expireToken(token);
             // Clear SecurityContext (logs the user out)
             SecurityContextHolder.clearContext();
+            logger.info("User logged out successfully!");
             return ResponseEntity.ok(new MessageResponse("User logged out successfully!"));
         }
         return ResponseEntity.badRequest().body(new MessageResponse("No token found!"));

@@ -1,10 +1,13 @@
 package com.example.laboratory.JWT;
 
 import com.example.laboratory.Config.SecurityConfig.CustomUserDetails;
+import com.example.laboratory.EntityResolver.ProfileResolver.Factory.ProfileResolverFactory;
+import com.example.laboratory.EntityResolver.ProfileResolver.ProfileResolver;
 import com.example.laboratory.Service.CustomUserDetailsService;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +26,8 @@ public class JwtTokenProvider {
     @Value("${lab.app.jwtRefreshSecretKey}")
     private String jwtRefreshSecretKey;
 
-
+    @Autowired
+    private ProfileResolverFactory profileResolverFactory;
     private final CustomUserDetailsService customUserDetailsService;
 
     public JwtTokenProvider(CustomUserDetailsService customUserDetailsService) {
@@ -33,16 +37,17 @@ public class JwtTokenProvider {
     // Generate Access Token
     public String generateAccessToken(String phoneNumber) {
         logger.info("Access Token String: {}", phoneNumber);
-        // 15 minutes
-        long ACCESS_TOKEN_VALIDITY = 1000 * 60 * 15;
+        // 15 minutes (7 days) 1000 * 60 * 15
+        long ACCESS_TOKEN_VALIDITY = 1000 * 60 * 2;
         return createToken(phoneNumber, ACCESS_TOKEN_VALIDITY, jwtSecretKey);
     }
 
     // Generate Refresh Token
     public String generateRefreshToken(String phoneNumber) {
         // 7 days
+        logger.info("Refresh token is generated");
         long REFRESH_TOKEN_VALIDITY = 1000 * 60 * 60 * 24 * 7;
-        return createToken(phoneNumber, REFRESH_TOKEN_VALIDITY, jwtRefreshSecretKey);
+        return createToken(phoneNumber, REFRESH_TOKEN_VALIDITY, jwtSecretKey);
     }
     public String createToken(String subject, long validity, String secretKey) {
         Map<String, Object> claims = new HashMap<>();
@@ -65,11 +70,45 @@ public class JwtTokenProvider {
 
     public boolean isTokenValid(String token) {
         try {
-            extractClaims(token);
-            return true;
-        } catch (JwtException | IllegalArgumentException e) {
+            Claims claims = extractClaims(token);
+            return validateClaims(claims);
+        } catch (ExpiredJwtException e) {
+            // Extract claims from the expired token
+            Claims expiredClaims = e.getClaims();
+            logger.warn("Token is expired, but claims are extracted");
+            return validateClaims(expiredClaims);
+        } catch (Exception e) {
+            logger.error("Invalid Token: " + e);
             return false;
         }
+    }
+
+    private boolean validateClaims(Claims claims) {
+        // Check if the token contains profileType and isAdmin attributes
+        String profileType = claims.get("profileType", String.class);
+        Boolean isAdmin = claims.get("isAdmin", Boolean.class);
+
+        logger.info("Profile Type when validating token: " + profileType);
+        logger.info("isAdmin status when validating token: " + isAdmin);
+
+        // Validate profileType and isAdmin
+        /*
+        if (profileType == null || isAdmin == null) {
+            return false; // Invalid if either is missing
+        }
+         */
+        if (!isAdmin)
+            if (profileType == null)
+                return false;
+        // Additional validation for specific profile types
+        // Token is valid if either isAdmin is true, profileType is valid, or profileType is "Lab Manager"
+        return isAdmin || isValidProfileType(profileType) || profileType.equals("Lab Manager");
+    }
+
+    public boolean isValidProfileType(String profileType) {
+        // Use the ProfileResolverFactory to check if a valid resolver exists
+        ProfileResolver resolver = profileResolverFactory.getResolver(profileType);
+        return resolver != null;
     }
 
     public String extractPhoneNumber(String token) {
@@ -95,15 +134,17 @@ public class JwtTokenProvider {
 
     public Boolean validateToken(String token) {
         try {
+            logger.info("validating token");
             Jwts.parser().setSigningKey(jwtSecretKey).parseClaimsJws(token);
             return true;
         } catch (JwtException | IllegalArgumentException e) {
+            logger.info("Token is invalid " + e);
             // Handle token expiration, signature errors, etc.
             return false;
         }
     }
 
-    private Boolean isTokenExpired(String token) {
+    public Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 

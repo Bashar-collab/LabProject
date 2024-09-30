@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
 
 import static org.hibernate.Hibernate.map;
 
-@CrossOrigin(origins = "*", maxAge = 3600) // allows for a specific domains to make request for a limited time
+//@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600) // allows for a specific domains to make request for a limited time
 @RestController
 @RequestMapping("/api")
-@PreAuthorize("hasRole('ROLE_ADMIN')")
+@PreAuthorize("hasRole('ADMIN')")
 public class TestCategoryController {
     private static final Logger logger = LoggerFactory.getLogger(TestCategoryController.class);
 
@@ -36,12 +36,13 @@ public class TestCategoryController {
     }
 
     // 1. Add a new Category
-    @PostMapping("/add")
+    @PostMapping("/register/test-categories")
     public ResponseEntity<?> addCategory(@Valid @RequestBody TestCategoriesDTO categoryDTO) {
         logger.info("Received request to add category: {}", categoryDTO.getCategory());
         try {
             TestCategories newCategory = testCategoryService.addCategory(categoryDTO.getCategory());
-            return ResponseEntity.status(HttpStatus.CREATED).body(newCategory);
+            logger.info("Category addition success: {}", newCategory.getCategory());
+            return ResponseEntity.status(HttpStatus.CREATED).body(new MessageResponse("Category " + newCategory.getCategory() + " is added successfully!"));
         } catch (DuplicateEntityException e) {
             logger.error("Category addition failed: {}", categoryDTO.getCategory());
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new MessageResponse(e.getMessage()));

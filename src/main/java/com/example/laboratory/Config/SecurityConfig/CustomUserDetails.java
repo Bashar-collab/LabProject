@@ -30,8 +30,10 @@ public class CustomUserDetails implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if (users.isAdmin()) {
             return Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        } else {
+        } else if(users.getProfileType() != null){
             return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + users.getProfileType().toUpperCase()));
+        } else {
+            return Collections.singletonList(new SimpleGrantedAuthority("ROLE_LAB_MANAGER"));
         }
     }
 

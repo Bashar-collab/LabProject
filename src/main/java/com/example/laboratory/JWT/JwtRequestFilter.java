@@ -1,6 +1,7 @@
 package com.example.laboratory.JWT;
 
 import com.example.laboratory.Service.CustomUserDetailsService;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,12 +43,25 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
             String phoneNumber = null;
             String jwt = null;
-
+/*
             if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
                 jwt = authorizationHeader.substring(7);
                 phoneNumber = jwtUtils.extractPhoneNumber(jwt);
                 logger.info("{} is extracted", phoneNumber);
+            }
+ */
 
+            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+                jwt = authorizationHeader.substring(7);
+                try
+                {
+                    phoneNumber = jwtUtils.extractPhoneNumber(jwt);
+                    logger.info("{} is extracted", phoneNumber);
+                } catch (ExpiredJwtException e)
+                {
+                    logger.warn("Token is expired but extracting claims");
+                    phoneNumber = e.getClaims().getSubject(); // Extract claims even if the token is expired
+                }
             }
 
             if (phoneNumber != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -57,7 +71,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 logger.info("{} is loaded", phoneNumber);
                 logger.info("User's details: {}", userDetails.getUsername());
                 logger.info("User's authorizes: {}", userDetails.getAuthorities());
-                if (jwtUtils.validateToken(jwt)) {
+                if (jwtUtils.isTokenValid(jwt)) {
                     // Create a new authentication token if the JWT is valid
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                             userDetails, null, userDetails.getAuthorities());

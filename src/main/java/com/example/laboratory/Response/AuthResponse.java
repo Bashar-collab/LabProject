@@ -4,8 +4,8 @@ public class AuthResponse {
     private String data;
     private String message;
 
-    public AuthResponse(String token, String message) {
-        this.data = token;
+    public AuthResponse(String data, String message) {
+        this.data = data;
         this.message = message;
     }
 
