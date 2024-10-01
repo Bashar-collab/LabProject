@@ -14,6 +14,7 @@ import com.example.laboratory.Service.LoginService;
 import com.example.laboratory.Service.RegistrationService;
 import com.example.laboratory.models.Users;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.MalformedJwtException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -155,10 +156,7 @@ public class AuthController {
 
         String accessToken = authorizationHeader.substring(7);
         // Validate the refresh token (check expiration, signature, etc.)
-//        if (!jwtTokenProvider.validateToken(accessToken)) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-//                    .body(new MessageResponse("Invalid or expired refresh token."));
-//        }
+
         // Get the phone number (subject) from the refresh token
         String phoneNumber = jwtTokenProvider.extractPhoneNumber(accessToken);
 
@@ -168,8 +166,8 @@ public class AuthController {
                     .body(new MessageResponse("Invalid refresh token."));
         }
         // Generate a new access token
-        String refreshToken = jwtTokenProvider.generateRefreshToken(phoneNumber);
-
+        String refreshToken = jwtTokenProvider.generateAccessToken(phoneNumber);
+        logger.info("Refresh token is generated and is sending it by response");
         // return refresh token in response
         return ResponseEntity.ok()
                 .body(new AuthResponse(refreshToken, null));
@@ -177,7 +175,12 @@ public class AuthController {
             // Handle illegal argument exceptions
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new MessageResponse("Invalid input: " + e.getMessage()));
-        } catch (Exception e) {
+        } catch (MalformedJwtException e)
+        {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new MessageResponse("Access Denied " + e.getMessage()));
+        }
+        catch (Exception e) {
             // Handle all other exceptions
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new MessageResponse("An error occurred: " + e.getMessage()));

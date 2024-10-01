@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,57 +36,73 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         this.customUserDetailsService = customUserDetailsService;
     }
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-        try {
-            final String authorizationHeader = request.getHeader("Authorization");
+@Override
+protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+    throws IOException, ServletException {
+    // Get the Authorization header from the request
+    final String authorizationHeader = request.getHeader("Authorization");
+    final String requestURI = request.getRequestURI();
 
-            String phoneNumber = null;
-            String jwt = null;
-/*
-            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-                jwt = authorizationHeader.substring(7);
+    String phoneNumber = null;
+    String jwt = null;
+
+    // Check if the Authorization header is present and starts with "Bearer "
+    if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+        jwt = authorizationHeader.substring(7);
+            if (jwtUtils.isTokenValid(jwt)) {
                 phoneNumber = jwtUtils.extractPhoneNumber(jwt);
-                logger.info("{} is extracted", phoneNumber);
+
+                logger.info("Refresh token request: JWT is valid for {}", phoneNumber);
+            } else {
+                logger.warn("Invalid JWT token for refresh.");
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                return;
             }
- */
-
-            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-                jwt = authorizationHeader.substring(7);
-                try
-                {
-                    phoneNumber = jwtUtils.extractPhoneNumber(jwt);
-                    logger.info("{} is extracted", phoneNumber);
-                } catch (ExpiredJwtException e)
-                {
-                    logger.warn("Token is expired but extracting claims");
-                    phoneNumber = e.getClaims().getSubject(); // Extract claims even if the token is expired
-                }
-            }
-
-            if (phoneNumber != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                logger.info("Validating for {}", phoneNumber);
-
-                UserDetails userDetails = customUserDetailsService.loadUserByUsername(phoneNumber);
-                logger.info("{} is loaded", phoneNumber);
-                logger.info("User's details: {}", userDetails.getUsername());
-                logger.info("User's authorizes: {}", userDetails.getAuthorities());
+            try
+            {
                 if (jwtUtils.isTokenValid(jwt)) {
-                    // Create a new authentication token if the JWT is valid
-                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                            userDetails, null, userDetails.getAuthorities());
-                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(authToken);
-                    logger.info("{} is validated", phoneNumber);
+                    phoneNumber = jwtUtils.extractPhoneNumber(jwt);
+
+                    // Load user details using the extracted phone number
+                    UserDetails userDetails = customUserDetailsService.loadUserByUsername(phoneNumber);
+
+                    // Log the process for debugging purposes
+                    logger.info("Validating for {}", phoneNumber);
+                    logger.info("{} is loaded", phoneNumber);
+                    logger.info("User's details: {}", userDetails.getUsername());
+                    logger.info("User's authorities: {}", userDetails.getAuthorities());
+
+                    // Create an authentication token if the JWT is valid
+                    if (phoneNumber != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                                userDetails, null, userDetails.getAuthorities());
+                        authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+                        // Set the authentication in the SecurityContext
+                        SecurityContextHolder.getContext().setAuthentication(authToken);
+                        logger.info("{} is validated and authenticated", phoneNumber);
+                    } else {
+                        logger.warn("Invalid JWT token.");
+                        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                        return;
+                    }
                 }
+            } catch (ExpiredJwtException e) {
+                // Handle expired JWT token for non-refresh endpoints
+                logger.warn("Token is expired");
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                return;
             }
-        } catch (Exception e)
-        {
-            logger.error("Cannot set user authentication: " + e);
         }
-        chain.doFilter(request, response);
-    }
+
+
+
+
+// Proceed with the filter chain
+    chain.doFilter(request, response);
+}
+
+
 
     private String parseJwt(HttpServletRequest request)
     {

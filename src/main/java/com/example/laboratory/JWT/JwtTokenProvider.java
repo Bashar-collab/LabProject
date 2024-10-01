@@ -38,15 +38,15 @@ public class JwtTokenProvider {
     public String generateAccessToken(String phoneNumber) {
         logger.info("Access Token String: {}", phoneNumber);
         // 15 minutes (7 days) 1000 * 60 * 15
-        long ACCESS_TOKEN_VALIDITY = 1000 * 60 * 2;
+        long ACCESS_TOKEN_VALIDITY = 1000 * 60 * 60 * 24 * 7;
         return createToken(phoneNumber, ACCESS_TOKEN_VALIDITY, jwtSecretKey);
     }
 
     // Generate Refresh Token
     public String generateRefreshToken(String phoneNumber) {
-        // 7 days
+        // 7 days 1000 * 60 * 60 * 24 * 7
         logger.info("Refresh token is generated");
-        long REFRESH_TOKEN_VALIDITY = 1000 * 60 * 60 * 24 * 7;
+        long REFRESH_TOKEN_VALIDITY = 1000 * 60 * 2;
         return createToken(phoneNumber, REFRESH_TOKEN_VALIDITY, jwtSecretKey);
     }
     public String createToken(String subject, long validity, String secretKey) {
@@ -74,9 +74,8 @@ public class JwtTokenProvider {
             return validateClaims(claims);
         } catch (ExpiredJwtException e) {
             // Extract claims from the expired token
-            Claims expiredClaims = e.getClaims();
-            logger.warn("Token is expired, but claims are extracted");
-            return validateClaims(expiredClaims);
+            logger.warn("Token is expired");
+            return false;
         } catch (Exception e) {
             logger.error("Invalid Token: " + e);
             return false;
@@ -92,11 +91,6 @@ public class JwtTokenProvider {
         logger.info("isAdmin status when validating token: " + isAdmin);
 
         // Validate profileType and isAdmin
-        /*
-        if (profileType == null || isAdmin == null) {
-            return false; // Invalid if either is missing
-        }
-         */
         if (!isAdmin)
             if (profileType == null)
                 return false;
